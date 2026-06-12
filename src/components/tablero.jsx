@@ -60,37 +60,116 @@ const onDragEnd = (result) => {
         Agregar
       </button>
 
- <div className="board">
-  <div className="column">
-    <h2>Por hacer</h2>
+ <DragDropContext onDragEnd={onDragEnd}>
+  <div className="board">
 
-    {tasks
-      .filter(task => task.status === "todo")
-      .map(task => (
-        <p key={task.id}>{task.title}</p>
-      ))}
+    <Droppable droppableId="todo">
+      {(provided) => (
+        <div
+          className="column todo"
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <h2>Por hacer</h2>
+
+          {tasks
+            .filter(task => task.status === "todo")
+            .map((task, index) => (
+              <Draggable
+                key={task.id}
+                draggableId={task.id}
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    className="task-card"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    {task.title}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+
+    <Droppable droppableId="doing">
+      {(provided) => (
+        <div
+          className="column doing"
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <h2>Haciendo</h2>
+
+          {tasks
+            .filter(task => task.status === "doing")
+            .map((task, index) => (
+              <Draggable
+                key={task.id}
+                draggableId={task.id}
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    className="task-card"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    {task.title}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+
+    <Droppable droppableId="done">
+      {(provided) => (
+        <div
+          className="column done"
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <h2>Hecho</h2>
+
+          {tasks
+            .filter(task => task.status === "done")
+            .map((task, index) => (
+              <Draggable
+                key={task.id}
+                draggableId={task.id}
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    className="task-card"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    {task.title}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+
   </div>
-
-<div className="column">
-    <h2>Haciendo</h2>
-
-    {tasks
-      .filter(task => task.status === "doing")
-      .map(task => (
-        <p key={task.id}>{task.title}</p>
-      ))}
-  </div>
-
-  <div className="column">
-    <h2>Hecho</h2>
-
-    {tasks
-      .filter(task => task.status === "done")
-      .map(task => (
-        <p key={task.id}>{task.title}</p>
-      ))}
-  </div>
-</div>
+</DragDropContext>
     </>
   );
 }

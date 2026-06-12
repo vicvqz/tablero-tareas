@@ -78,8 +78,7 @@ h1 {
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 10px;
-  cursor: pointer;
-  transition: transform 0.2s;
+  cursor: grab;
 }
 
 .task-card:hover {

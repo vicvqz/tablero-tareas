@@ -4,8 +4,8 @@ export default function Tablero() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: "Diseñar UI",
-      status: "todo"
+      title: "Investigar la estructura organizacional de la empresa",
+      status: "Por hacer"
     }
   ]);
 
@@ -19,7 +19,7 @@ export default function Tablero() {
       {
         id: Date.now(),
         title: newTask,
-        status: "todo"
+        status: "Por hacer"
       }
     ]);
 

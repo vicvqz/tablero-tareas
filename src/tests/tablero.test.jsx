@@ -38,3 +38,17 @@ test("adds a task", async () => {
     screen.getByText("Preparar presentación")
   ).toBeInTheDocument();
 });
+
+test("does not add empty task", async () => {
+  render(<Tablero />);
+
+  await userEvent.click(
+    screen.getByRole("button", {
+      name: /agregar/i,
+    })
+  );
+
+  expect(
+    screen.queryByText("")
+  ).not.toBeInTheDocument();
+});

@@ -50,11 +50,21 @@ const onDragEnd = (result) => {
     <>
       <h1>Tablero de tareas</h1>
 
-      <input
-        placeholder="Nueva tarea"
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-      />
+      <div className="task-form">
+  <input
+    className="task-input"
+    placeholder="Nueva tarea"
+    value={newTask}
+    onChange={(e) => setNewTask(e.target.value)}
+  />
+
+  <button
+    className="add-button"
+    onClick={addTask}
+  >
+    Agregar
+  </button>
+</div>
 
       <button onClick={addTask}>
         Agregar

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Board() {
+export default function Tablero() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -28,7 +28,7 @@ export default function Board() {
 
   return (
     <>
-      <h1>Kanban Board</h1>
+      <h1>Tablero de tareas</h1>
 
       <input
         placeholder="Nueva tarea"
@@ -41,7 +41,7 @@ export default function Board() {
       </button>
 
       <div>
-        <h2>To Do</h2>
+        <h2>Por hacer</h2>
         {tasks
           .filter(task => task.status === "todo")
           .map(task => (
@@ -50,11 +50,11 @@ export default function Board() {
       </div>
 
       <div>
-        <h2>Doing</h2>
+        <h2>Haciendo</h2>
       </div>
 
       <div>
-        <h2>Done</h2>
+        <h2>Hecho</h2>
       </div>
     </>
   );

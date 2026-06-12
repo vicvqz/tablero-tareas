@@ -66,10 +66,6 @@ const onDragEnd = (result) => {
   </button>
 </div>
 
-      <button onClick={addTask}>
-        Agregar
-      </button>
-
  <DragDropContext onDragEnd={onDragEnd}>
   <div className="board">
 

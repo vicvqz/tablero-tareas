@@ -13,7 +13,7 @@ test("shows default task", () => {
   render(<Tablero />);
 
   expect(
-    screen.getByText("Diseñar UI")
+    screen.getByText("Investigar la estructura organizacional de la empresa")
   ).toBeInTheDocument();
 });
 
@@ -27,7 +27,7 @@ test("adds a task", async () => {
 
   await userEvent.type(
     input,
-    "Investigar la estructura organizacional de la empresa"
+    "Preparar presentación"
   );
 
   await userEvent.click(
@@ -35,6 +35,6 @@ test("adds a task", async () => {
   );
 
   expect(
-    screen.getByText("Investigar la estructura organizacional de la empresa")
+    screen.getByText("Preparar presentación")
   ).toBeInTheDocument();
 });

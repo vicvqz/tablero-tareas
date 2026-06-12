@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 export default function Tablero() {
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+      id: "1",
       title: "Investigar la estructura organizacional de la empresa",
       status: "Por hacer"
     }
@@ -17,14 +18,33 @@ export default function Tablero() {
     setTasks([
       ...tasks,
       {
-        id: Date.now(),
+        id: Date.now().toString(),
         title: newTask,
-        status: "Por hacer"
+        status: "todo"
       }
     ]);
 
     setNewTask("");
   };
+
+const onDragEnd = (result) => {
+  if (!result.destination) return;
+
+  const taskId = result.draggableId;
+
+  const newStatus = result.destination.droppableId;
+
+  setTasks((currentTasks) =>
+    currentTasks.map((task) =>
+      task.id === taskId
+        ? {
+            ...task,
+            status: newStatus
+          }
+        : task
+    )
+  );
+};
 
   return (
     <>
@@ -45,7 +65,7 @@ export default function Tablero() {
     <h2>Por hacer</h2>
 
     {tasks
-      .filter(task => task.status === "Por hacer")
+      .filter(task => task.status === "todo")
       .map(task => (
         <p key={task.id}>{task.title}</p>
       ))}
@@ -55,7 +75,7 @@ export default function Tablero() {
     <h2>Haciendo</h2>
 
     {tasks
-      .filter(task => task.status === "Haciendo")
+      .filter(task => task.status === "doing")
       .map(task => (
         <p key={task.id}>{task.title}</p>
       ))}
@@ -65,7 +85,7 @@ export default function Tablero() {
     <h2>Hecho</h2>
 
     {tasks
-      .filter(task => task.status === "Hecho")
+      .filter(task => task.status === "done")
       .map(task => (
         <p key={task.id}>{task.title}</p>
       ))}

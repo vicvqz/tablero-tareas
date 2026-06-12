@@ -6,7 +6,7 @@ export default function Tablero() {
     {
       id: "1",
       title: "Investigar la estructura organizacional de la empresa",
-      status: "Por hacer"
+      status: "todo"
     }
   ]);
 
